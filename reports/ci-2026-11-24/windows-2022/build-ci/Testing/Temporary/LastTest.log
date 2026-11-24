@@ -1,0 +1,83 @@
+Start testing: Nov 24 06:08 Coordinated Universal Time
+----------------------------------------------------------
+1/1 Testing: modeling
+1/1 Test: modeling
+Command: "D:/a/occt-qt-learning-lab/occt-qt-learning-lab/build-ci/model_tests.exe" "D:/a/occt-qt-learning-lab/occt-qt-learning-lab/build-ci/test-artifacts"
+Directory: D:/a/occt-qt-learning-lab/occt-qt-learning-lab/build-ci
+"modeling" start time: Nov 24 06:08 Coordinated Universal Time
+Output:
+----------------------------------------------------------
+PASS box_topology 
+PASS box_volume 
+PASS box_center 
+PASS box_custom_dimensions 
+PASS plate_volume 
+PASS plate_single_solid 
+PASS extrusion_volume 
+PASS revolution_volume 
+PASS loft_volume 
+PASS fillet_valid_and_removes_material 
+PASS translation_volume 
+PASS translation_center 
+PASS flange_volume 
+PASS flange_six_holes 
+PASS sphere_volume 
+PASS boolean_union_volume 
+PASS boolean_intersection_volume 
+PASS reject_zero_dimension 
+PASS reject_negative_dimension 
+PASS reject_nan_dimension 
+PASS reject_infinite_dimension 
+PASS reject_oversized_plate_hole 
+PASS reject_zero_extrusion 
+PASS reject_oversized_fillet 
+PASS reject_invalid_flange_count 
+PASS reject_overlapping_flange_holes 
+PASS reject_empty_shape 
+PASS reject_invalid_translation 
+
+*******************************************************************
+******        Statistics on Transfer (Write)                 ******
+
+*******************************************************************
+******        Transfer Mode = 0  I.E.  As Is       ******
+******        Transferring Shape, ShapeType = 0                      ******
+** WorkSession : Sending all data
+ Step File Name : D:/a/occt-qt-learning-lab/occt-qt-learning-lab/build-ci/test-artifacts\plate.step(434 ents)  Write  Done
+PASS step_roundtrip 
+
+*******************************************************************
+******        Statistics on Transfer (Write)                 ******
+
+*******************************************************************
+******        Transfer Mode = 0  I.E.  As Is       ******
+******        Transferring Shape, ShapeType = 0                      ******
+** WorkSession : Sending all data
+ Step File Name : D:/a/occt-qt-learning-lab/occt-qt-learning-lab/build-ci/test-artifacts\法兰盘.step(538 ents)  Write  Done
+PASS step_unicode_filename 
+PASS brep_roundtrip 
+PASS binary_stl_triangle_count 
+PASS reject_missing_step 
+**** ERR StepFile : Undefined Parsing: Line 2: Incorrect syntax: unexpected TYPE, expecting STEP    ****
+PASS reject_corrupt_step 
+
+*******************************************************************
+******        Statistics on Transfer (Write)                 ******
+
+*******************************************************************
+******        Transfer Mode = 0  I.E.  As Is       ******
+******        Transferring Shape, ShapeType = 2                      ******
+** WorkSession : Sending all data
+ Step File could not be created : D:/a/occt-qt-learning-lab/occt-qt-learning-lab/build-ci/test-artifacts\missing-directory\box.step
+PASS reject_unwritable_step 
+PASS reject_missing_brep 
+36/36 passed
+<end of output>
+Test time =   0.51 sec
+----------------------------------------------------------
+Test Passed.
+"modeling" end time: Nov 24 06:08 Coordinated Universal Time
+"modeling" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Nov 24 06:08 Coordinated Universal Time

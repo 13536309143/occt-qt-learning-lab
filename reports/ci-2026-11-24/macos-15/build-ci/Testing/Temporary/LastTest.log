@@ -1,0 +1,83 @@
+Start testing: Nov 24 06:07 UTC
+----------------------------------------------------------
+1/1 Testing: modeling
+1/1 Test: modeling
+Command: "/Users/runner/work/occt-qt-learning-lab/occt-qt-learning-lab/build-ci/model_tests" "/Users/runner/work/occt-qt-learning-lab/occt-qt-learning-lab/build-ci/test-artifacts"
+Directory: /Users/runner/work/occt-qt-learning-lab/occt-qt-learning-lab/build-ci
+"modeling" start time: Nov 24 06:07 UTC
+Output:
+----------------------------------------------------------
+PASS box_topology 
+PASS box_volume 
+PASS box_center 
+PASS box_custom_dimensions 
+PASS plate_volume 
+PASS plate_single_solid 
+PASS extrusion_volume 
+PASS revolution_volume 
+PASS loft_volume 
+PASS fillet_valid_and_removes_material 
+PASS translation_volume 
+PASS translation_center 
+PASS flange_volume 
+PASS flange_six_holes 
+PASS sphere_volume 
+PASS boolean_union_volume 
+PASS boolean_intersection_volume 
+PASS reject_zero_dimension 
+PASS reject_negative_dimension 
+PASS reject_nan_dimension 
+PASS reject_infinite_dimension 
+PASS reject_oversized_plate_hole 
+PASS reject_zero_extrusion 
+PASS reject_oversized_fillet 
+PASS reject_invalid_flange_count 
+PASS reject_overlapping_flange_holes 
+PASS reject_empty_shape 
+PASS reject_invalid_translation 
+[32;1m
+*******************************************************************
+******        Statistics on Transfer (Write)                 ******[0m
+[32;1m
+*******************************************************************
+******        Transfer Mode = 0  I.E.  As Is       ******[0m
+[32;1m******        Transferring Shape, ShapeType = 0                      ******[0m
+[32;1m** WorkSession : Sending all data[0m
+[32;1m Step File Name : /Users/runner/work/occt-qt-learning-lab/occt-qt-learning-lab/build-ci/test-artifacts/plate.step(434 ents)  Write  Done[0m
+PASS step_roundtrip 
+[32;1m
+*******************************************************************
+******        Statistics on Transfer (Write)                 ******[0m
+[32;1m
+*******************************************************************
+******        Transfer Mode = 0  I.E.  As Is       ******[0m
+[32;1m******        Transferring Shape, ShapeType = 0                      ******[0m
+[32;1m** WorkSession : Sending all data[0m
+[32;1m Step File Name : /Users/runner/work/occt-qt-learning-lab/occt-qt-learning-lab/build-ci/test-artifacts/法兰盘.step(538 ents)  Write  Done[0m
+PASS step_unicode_filename 
+PASS brep_roundtrip 
+PASS binary_stl_triangle_count 
+PASS reject_missing_step 
+[31;1m**** ERR StepFile : Undefined Parsing: Line 2: Incorrect syntax: unexpected TYPE, expecting STEP    ****[0m
+PASS reject_corrupt_step 
+[32;1m
+*******************************************************************
+******        Statistics on Transfer (Write)                 ******[0m
+[32;1m
+*******************************************************************
+******        Transfer Mode = 0  I.E.  As Is       ******[0m
+[32;1m******        Transferring Shape, ShapeType = 2                      ******[0m
+[32;1m** WorkSession : Sending all data[0m
+[32;1m Step File could not be created : /Users/runner/work/occt-qt-learning-lab/occt-qt-learning-lab/build-ci/test-artifacts/missing-directory/box.step[0m
+PASS reject_unwritable_step 
+PASS reject_missing_brep 
+36/36 passed
+<end of output>
+Test time =   0.68 sec
+----------------------------------------------------------
+Test Passed.
+"modeling" end time: Nov 24 06:07 UTC
+"modeling" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Nov 24 06:07 UTC
