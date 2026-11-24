@@ -38,13 +38,13 @@ jobs:
         with:
           arch: x64
       - name: Configure
-        shell: micromamba-shell {0}
+        shell: bash -el {0}
         run: cmake -S . -B build-ci -G Ninja -DCMAKE_BUILD_TYPE=Release -DOCCT_ENABLE_GUI_TESTS=OFF
       - name: Build
-        shell: micromamba-shell {0}
+        shell: bash -el {0}
         run: cmake --build build-ci --parallel 3
       - name: Modeling and exchange tests
-        shell: micromamba-shell {0}
+        shell: bash -el {0}
         run: ctest --test-dir build-ci --output-on-failure --output-junit test-results.xml
       - name: Upload test evidence
         if: always()
