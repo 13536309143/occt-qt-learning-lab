@@ -1,0 +1,8 @@
+[1/8] Building CXX object CMakeFiles\OcctQtStarter.dir\native_window.cpp.obj
+[2/8] Building CXX object CMakeFiles\cad_model.dir\modeling.cpp.obj
+[3/8] Linking CXX static library cad_model.lib
+[4/8] Building CXX object CMakeFiles\model_tests.dir\tests\model_tests.cpp.obj
+[5/8] Linking CXX executable model_tests.exe
+[6/8] Building CXX object CMakeFiles\OcctQtStarter.dir\main.cpp.obj
+[7/8] Building CXX object CMakeFiles\OcctQtStarter.dir\gui_experiments.cpp.obj
+[8/8] Linking CXX executable OcctQtStarter.exe

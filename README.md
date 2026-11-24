@@ -55,7 +55,8 @@ powershell -ExecutionPolicy Bypass -File .\scripts\run-windows.ps1
 - 18 项原生窗口、鼠标事件、拾取、渲染和文件交互检查：全部通过。
 - [原始建模结果](reports/macos-2026-11-24/model-results.json)、[原始 GUI 结果](reports/macos-2026-11-24/gui-results.json)、[CTest 记录](reports/macos-2026-11-24/LastTest.log)。
 - 另执行 QT_SCALE_FACTOR=2 的同一组窗口实验，18/18 通过；[原始记录](reports/macos-2026-11-24/scaled-gui/gui-results.json)。
-- Windows 结果以 [Actions](https://github.com/13536309143/occt-qt-learning-lab/actions) 的实际运行和你本机测试为准。没有执行的物理高分屏、显卡和文件对话框检查不会记作通过。
+- Windows Server 2022 / MSVC x64：云端工程编译、36 项模型检查通过；还实际运行通过了仓库的 Windows 用户构建脚本（跳过 GUI）。[运行记录](https://github.com/13536309143/occt-qt-learning-lab/actions/runs/45338013646)、[Windows 原始结果](reports/ci-2026-11-24/windows-2022/build-ci/test-artifacts/model-results.json)。
+- 云端 macOS 15 的编译与 36 项模型检查同样通过。物理 Windows 桌面、高分屏、显卡和文件对话框仍按教程在本机验收。
 
 ## 界面操作
 

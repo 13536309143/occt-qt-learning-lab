@@ -11,10 +11,15 @@
 | 原生窗口检查 | 18/18 | macos-2026-11-24/gui-results.json |
 | 强制 QT_SCALE_FACTOR=2 的窗口检查 | 18/18 | macos-2026-11-24/scaled-gui/gui-results.json |
 | 截图 | 基准 14 张 + 缩放实验 14 张 | docs/screenshots、reports/.../scaled-gui |
+| 云端 Windows 2022 / MSVC | 编译及 36/36 模型检查通过 | reports/ci-2026-11-24/windows-2022 |
+| Windows 用户构建脚本 | 实际执行通过，跳过 GUI | 同目录 reports/windows-local 和 build-win |
+| 云端 macOS 15 | 编译及 36/36 模型检查通过 | reports/ci-2026-11-24/macos-15 |
 
 CTest 把两个可执行测试套件分别计为 modeling 和 gui_experiments，因此会显示 2/2 通过；套件内部细分为 36+18 项。额外 scale2 是独立执行的同一 GUI 套件，共执行 72 项检查，不应说成 72 种不同测试。
 
 强制缩放说明坐标路径在该配置下工作，不等同于验证所有真实 Retina/Windows 高 DPI、多屏切换和显卡组合。
+
+云端验证的源代码提交为 `fb53e60ca0af910fbec7447aaff9f55c583d65bb`，后续仅归档文档和证据。完整运行：[GitHub Actions 45338013646](https://github.com/13536309143/occt-qt-learning-lab/actions/runs/45338013646)。模型 JSON 与原始 artifact ZIP 已保存，见 reports/ci-2026-11-24；窗口截图来自本地 Mac，不是 Windows runner。
 
 ## 2. 如何复跑
 

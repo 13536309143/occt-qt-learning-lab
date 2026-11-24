@@ -17,4 +17,10 @@
 
 GitHub Actions 的 Windows/Mac 运行与 artifact 是独立证据，不能替代本机真实桌面测试。Windows 本机脚本将结果放到 `windows-local/` 和 `build-win/*-artifacts`，默认不提交本机日志。
 
+## 已完成的双平台 CI
+
+[运行 45338013646](https://github.com/13536309143/occt-qt-learning-lab/actions/runs/45338013646) 的两个任务均成功，验证提交 fb53e60。详细状态在 ci-2026-11-24.json；原始 artifact ZIP 和解出的 JSON/JUnit/日志在 ci-2026-11-24/。
+
+Windows 2022 先完成标准构建和 36 项模型检查，再调用用户的 build-windows.ps1 -SkipGui，第二份模型结果也为 36/36。云端 Mac 15 同样完成构建与 36 项模型检查。Windows GUI 仍需用户在真实桌面运行。
+
 截图 01—12 与 14 是 OCCT 实际视口导出；13 是系统抓取应用窗口区域。它们没有使用 AI 图像生成或重新绘制。
