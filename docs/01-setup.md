@@ -44,7 +44,11 @@ powershell -ExecutionPolicy Bypass -File .\scripts\build-windows.ps1
 powershell -ExecutionPolicy Bypass -File .\scripts\run-windows.ps1
 ```
 
-安装脚本联网下载 micromamba 并创建 `.local\env`；构建脚本寻找 VS 的 `vcvars64.bat`，导入 x64 编译环境，设置 Qt/OCCT 路径并运行 CTest。
+安装脚本联网下载 micromamba 并创建 `.local\env`；构建脚本寻找 VS 的 `vcvars64.bat`，导入 x64 编译环境，设置 Qt/OCCT 路径并运行 CTest。普通 Windows PowerShell 5.1 可以直接执行，不需要先激活系统 Conda。安装只需首次执行，之后修改源码直接重跑构建脚本。
+
+构建与启动脚本把 Qt 插件目录设为 `.local\env\Library\lib\qt6\plugins`，平台插件目录为其下的 `platforms`。仅设置 DLL 的 PATH 还不够：缺失插件路径可能弹出 “no Qt platform plugin could be initialized” 并阻塞测试。不要把另一份 Qt 的 qwindows.dll 复制进来。
+
+2026-11-24 已在 Windows 11 x64、VS 2022/MSVC 19.44、RTX 3060 上实际完成安装、Release 构建与桌面测试，详见 [本机验证记录](../reports/windows-2026-11-24/README.md)。
 
 没有桌面会话时可以跳过 GUI：
 
@@ -94,6 +98,8 @@ Mac 已有 Homebrew 时也可使用 `brew install cmake ninja qt opencascade`，
 | DLL 不存在 | 运行脚本设置的 PATH 是否生效 |
 | wrong architecture | Mac arm64/x86_64 混用，清理相应 build 目录重建 |
 | Qt platform plugin 错误 | 检查是否混用了全局 QT_PLUGIN_PATH 或另一份 Qt |
+| 初始化 MSVC 时提示 Program 不是命令 | 更新构建脚本；PowerShell 5.1 中通过 `cmd /d /c` 的 `call` 调用带空格的 vcvars64.bat 路径 |
+| CMake Warning 导致 PowerShell 提前终止 | 更新构建脚本；原生命令用退出码判定成功，stderr 上的警告保留到日志 |
 | 原生窗口黑屏 | 在终端启动查看日志，确认 OpenGL 与本机桌面可用 |
 
 依赖下载失败时先检查网络和代理。不要在安装一半时把缺失的库随意从其他版本复制进来。

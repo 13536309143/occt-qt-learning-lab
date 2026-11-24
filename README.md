@@ -1,12 +1,16 @@
-# 从零学习 Qt + Open CASCADE：Mac / Windows 完整实验教程
+# 从零学习 Qt + Open CASCADE
 
-用同一套 C++17 源码学习三维窗口、几何拓扑、建模、选择和 CAD 文件交换。基线版本为 **Qt 6.8.4 + OCCT 7.9.3**。每个实验都有源码、运行方法和验收条件。
+面向有基础 C++ 经验、想入门 CAD 开发的读者：用同一套 **C++17 + Qt Widgets + Open CASCADE** 源码，从第一个三维窗口走到参数化法兰、拓扑拾取和 STEP 文件交换。支持 macOS 与 Windows，固定核心依赖为 **Qt 6.8.4 + OCCT 7.9.3**。
+
+每个实验都有源码、运行方法和验收条件。建议先跑通工程，再按下方课程顺序阅读；无需先安装或学习完整 CAD 软件。
 
 ![Mac 实际程序截图](docs/screenshots/13-application-screen.png)
 
-上图来自本机真实窗口。其余截图是 OCCT 从实际 OpenGL 帧缓冲导出的视口图片，未使用生成式图像。
+![Windows 实际程序截图](docs/screenshots/windows/13-application-screen.png)
 
-## 从这里开始
+上图分别来自 macOS 与 Windows 的真实程序窗口。课程中的视口截图由 OCCT 从实际 OpenGL 帧缓冲导出，未使用生成式图像。
+
+## 学习路线
 
 | 顺序 | 教程 | 完成后能做什么 |
 |---|---|---|
@@ -17,14 +21,16 @@
 | 5 | [测试覆盖、证据和 Windows 验收](docs/05-testing.md) | 判断实验是否真正通过 |
 | 6 | [独立项目、架构与发布](docs/06-next-project.md) | 扩展参数化建模工具 |
 
-## 获取完整工程
+## 获取工程
 
 ```bash
 git clone https://github.com/13536309143/occt-qt-learning-lab.git
 cd occt-qt-learning-lab
 ```
 
-## Mac 快速开始
+后续命令都在仓库根目录执行。依赖由 micromamba 安装到仓库的 `.local/`，不要求已有 Homebrew、Conda 或 Qt SDK。首次安装需要联网，除约数百 MB 的下载外，还要为依赖、包缓存和构建产物预留磁盘空间。
+
+## macOS 快速开始
 
 先安装 Xcode Command Line Tools：`xcode-select --install`。进入仓库后执行：
 
@@ -34,11 +40,13 @@ bash scripts/build-macos.sh
 open build-mac/OcctQtStarter.app
 ```
 
-依赖安装在仓库 `.local/` 下，不要求已有 Homebrew，不修改全局 Qt 环境。首次下载需要联网和数百 MB 空间。`.local/` 与 `build-*` 不提交 Git。
+脚本使用本机架构：Apple Silicon 为 arm64，Intel 为 x86_64。`.local/` 与 `build-*` 不提交 Git。
 
 ## Windows 快速开始
 
-先安装 **Visual Studio 2022 → 使用 C++ 的桌面开发**，然后在 Windows PowerShell 中进入仓库：
+准备 **Git for Windows**、**Visual Studio 2022 → 使用 C++ 的桌面开发**（含 MSVC x64 和 Windows SDK）。使用普通 Windows PowerShell 即可，脚本会自动加载编译器环境；无需预先打开 VS 开发者终端。
+
+进入仓库后依次执行：
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\setup-windows.ps1
@@ -46,17 +54,35 @@ powershell -ExecutionPolicy Bypass -File .\scripts\build-windows.ps1
 powershell -ExecutionPolicy Bypass -File .\scripts\run-windows.ps1
 ```
 
-`ExecutionPolicy Bypass` 仅针对启动的这一个 PowerShell 进程。脚本使用 x64 MSVC，依赖同样安装在 `.local/`。详细路径、手动安装与报错排查见安装章节。
+安装只需首次执行；修改源码后重新运行构建脚本即可。默认构建 Release，并执行模型与真实 OpenGL 窗口测试，测试期间会短暂弹出窗口，请在已登录的桌面会话运行。`ExecutionPolicy Bypass` 仅针对启动的这一个 PowerShell 进程。
 
-## 当前可复核的本机结果
+没有桌面会话时使用 `build-windows.ps1 -SkipGui`，仅验证编译与模型。日常启动请使用 `run-windows.ps1`，它会设置本项目 DLL 的搜索路径。直接双击 EXE 可能缺少 Qt/OCCT 动态库。
 
-- Mac arm64、OCCT 7.9.3、Qt 6.8.4：已实际编译并运行。
-- 36 项建模、数学属性、非法输入和文件交换检查：全部通过。
-- 18 项原生窗口、鼠标事件、拾取、渲染和文件交互检查：全部通过。
-- [原始建模结果](reports/macos-2026-11-24/model-results.json)、[原始 GUI 结果](reports/macos-2026-11-24/gui-results.json)、[CTest 记录](reports/macos-2026-11-24/LastTest.log)。
-- 另执行 QT_SCALE_FACTOR=2 的同一组窗口实验，18/18 通过；[原始记录](reports/macos-2026-11-24/scaled-gui/gui-results.json)。
-- Windows Server 2022 / MSVC x64：云端工程编译、36 项模型检查通过；还实际运行通过了仓库的 Windows 用户构建脚本（跳过 GUI）。[运行记录](https://github.com/13536309143/occt-qt-learning-lab/actions/runs/45338013646)、[Windows 原始结果](reports/ci-2026-11-24/windows-2022/build-ci/test-artifacts/model-results.json)。
-- 云端 macOS 15 的编译与 36 项模型检查同样通过。物理 Windows 桌面、高分屏、显卡和文件对话框仍按教程在本机验收。
+详细安装、Qt Creator 配置、手动 SDK 路径及故障排查见 [安装教程](docs/01-setup.md)。不要混用 MSVC 与 MinGW 库，也不要把 Mac 构建目录复制到 Windows。
+
+## 已验证的环境与结果
+
+以下记录日期均为 **2026-11-24**，核心依赖均为 Qt 6.8.4 / OCCT 7.9.3。
+
+| 环境 | 编译 / 模型检查 | 真实窗口检查 | 证据 |
+|---|---|---|---|
+| macOS arm64 / Apple Clang | Release，36/36 | 默认与强制 2 倍缩放各 18/18 | [Mac 结果](reports/macos-2026-11-24/gui-results.json) |
+| Windows 11 x64 / MSVC 19.44 / RTX 3060 | Release，36/36 | 默认、强制 1.5 倍、2 倍缩放各 18/18 | [Windows 验证记录](reports/windows-2026-11-24/README.md) |
+| GitHub Actions：Windows Server 2022 / macOS 15 | 两个平台编译及 36/36 模型检查通过 | CI 不运行桌面实验 | [CI 运行记录](https://github.com/13536309143/occt-qt-learning-lab/actions/runs/45338013646) |
+
+Windows 另外通过原生文件对话框保存、打开中文文件名 STEP，核对长方体体积为 240000 mm³；取消导入后模型保留，关闭后可重新启动。本次修复了 Windows PowerShell 5.1 的 VS 路径引号、原生命令警告处理，以及 Qt 平台插件路径问题。
+
+CTest 的 `2/2` 指两个套件，内部为 36 项模型检查和 18 项窗口检查。强制缩放是同一组实验的重复执行，不能替代不同物理显示器之间移动窗口的验收。覆盖范围与人工验收表见 [测试教程](docs/05-testing.md)。
+
+本地运行后可查看：
+
+```text
+build-win/OcctQtStarter.exe                 Windows Release 程序（用运行脚本启动）
+build-win/test-artifacts/model-results.json 模型检查结果
+build-win/gui-artifacts/gui-results.json    窗口检查结果
+build-win/gui-artifacts/*.png               真实渲染截图
+reports/windows-local/                     配置、构建和 CTest 日志
+```
 
 ## 界面操作
 

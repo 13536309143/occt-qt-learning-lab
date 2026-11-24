@@ -14,6 +14,10 @@
 | 云端 Windows 2022 / MSVC | 编译及 36/36 模型检查通过 | reports/ci-2026-11-24/windows-2022 |
 | Windows 用户构建脚本 | 实际执行通过，跳过 GUI | 同目录 reports/windows-local 和 build-win |
 | 云端 macOS 15 | 编译及 36/36 模型检查通过 | reports/ci-2026-11-24/macos-15 |
+| 本机 Windows 11 x64 / MSVC 19.44 | Release 编译及 36/36 模型检查通过 | [Windows 记录](../reports/windows-2026-11-24/README.md) |
+| 本机 Windows 默认 / 强制 1.5 / 2 倍缩放 | 每组 18/18 窗口检查通过 | 同目录 gui-results.json、scaled-150、scaled-200 |
+
+Windows 本机使用 Windows PowerShell 5.1、VS 2022 17.14、RTX 3060，Qt 6.8.4 / OCCT 7.9.3。原生文件对话框另已验证中文文件名 STEP 保存与重开、取消打开保留模型、关闭后重新启动；这些补验不计入自动测试数量。默认与两组强制缩放共执行 36+18×3=90 项自动检查，其中三组 GUI 是相同的 18 项实验。
 
 CTest 把两个可执行测试套件分别计为 modeling 和 gui_experiments，因此会显示 2/2 通过；套件内部细分为 36+18 项。额外 scale2 是独立执行的同一 GUI 套件，共执行 72 项检查，不应说成 72 种不同测试。
 
