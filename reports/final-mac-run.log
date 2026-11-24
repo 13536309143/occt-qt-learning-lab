@@ -1,21 +1,15 @@
 -- Configuring done (0.1s)
 -- Generating done (0.0s)
 -- Build files have been written to: /Volumes/OUT/OCCT/build-mac
-[1/8] Building CXX object CMakeFiles/OcctQtStarter.dir/native_window.cpp.o
-[2/8] Building CXX object CMakeFiles/cad_model.dir/modeling.cpp.o
-[3/8] Linking CXX static library libcad_model.a
-[4/8] Building CXX object CMakeFiles/model_tests.dir/tests/model_tests.cpp.o
-[5/8] Linking CXX executable model_tests
-[6/8] Building CXX object CMakeFiles/OcctQtStarter.dir/main.cpp.o
-[7/8] Building CXX object CMakeFiles/OcctQtStarter.dir/gui_experiments.cpp.o
-[8/8] Linking CXX executable OcctQtStarter.app/Contents/MacOS/OcctQtStarter
+[1/2] Building CXX object CMakeFiles/OcctQtStarter.dir/gui_experiments.cpp.o
+[2/2] Linking CXX executable OcctQtStarter.app/Contents/MacOS/OcctQtStarter
 Test project /Volumes/OUT/OCCT/build-mac
     Start 1: modeling
-1/2 Test #1: modeling .........................   Passed    0.49 sec
+1/2 Test #1: modeling .........................   Passed    0.15 sec
     Start 2: gui_experiments
-2/2 Test #2: gui_experiments ..................   Passed    5.26 sec
+2/2 Test #2: gui_experiments ..................   Passed    5.84 sec
 
 100% tests passed out of 2
 
-Total Test time (real) =   5.76 sec
+Total Test time (real) =   5.99 sec
 Open: open build-mac/OcctQtStarter.app

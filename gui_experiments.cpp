@@ -1,13 +1,18 @@
 #include "gui_experiments.h"
 #include "cad_view.h"
+#include <QDialog>
+#include <QDialogButtonBox>
 #include <QDir>
 #include <QFile>
 #include <QImage>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QPushButton>
 #include <QScreen>
+#include <QSpinBox>
 #include <QSysInfo>
+#include <QTimer>
 #include <QToolButton>
 #include <QtTest/QTest>
 #include <Standard_Version.hxx>
@@ -189,6 +194,36 @@ int runGuiExperiments(QMainWindow &window, CadView &widget, const QString &outpu
       c->InitSelected();
       check(c->MoreSelected() && c->HasSelectedShape(), "Selection after resize failed");
     });
+    test("parameter_dialog_six_holes", [&] {
+      bool dialogSeen = false, inputSeen = false;
+      QTimer::singleShot(300, &window, [&] {
+        auto *dialog = qobject_cast<QDialog *>(QApplication::activeModalWidget());
+        if (!dialog)
+          return;
+        dialogSeen = true;
+        auto *count = dialog->findChild<QSpinBox *>();
+        auto *buttons = dialog->findChild<QDialogButtonBox *>();
+        if (count && buttons) {
+          inputSeen = true;
+          count->setValue(6);
+          QTest::mouseClick(buttons->button(QDialogButtonBox::Ok), Qt::LeftButton);
+        } else
+          dialog->reject();
+      });
+      bool actionFound = false;
+      for (auto *button : window.findChildren<QToolButton *>()) {
+        if (button->text() == "Parameters") {
+          actionFound = true;
+          QTest::mouseClick(button, Qt::LeftButton);
+          break;
+        }
+      }
+      check(actionFound && dialogSeen && inputSeen, "Parameter dialog did not expose inputs");
+      const double expected = std::acos(-1.0) * (2500 - 225 - 6 * 16) * 12;
+      check(std::abs(cad::stats(widget.currentShape()).volume - expected) < 1e-3,
+            "Parameter dialog did not rebuild the six-hole flange");
+      snapshot("14-six-hole-parameters");
+    });
     // Capture only this application's visible rectangle. Permission/OS restrictions
     // can prevent screen capture; viewport PNGs above remain the primary evidence.
     widget.displayShape(cad::flange());
@@ -200,17 +235,16 @@ int runGuiExperiments(QMainWindow &window, CadView &widget, const QString &outpu
     if (!screen.isNull())
       screen.save(QDir(output).filePath("13-application-screen.png"));
   }
-  QJsonObject root{
-      {"platform", QSysInfo::prettyProductName()},
-      {"architecture", QSysInfo::currentCpuArchitecture()},
-      {"qt", qVersion()},
-      {"occt", OCC_VERSION_COMPLETE},
-      {"tests", results},
-      {"total", results.size()},
-      {"failed", failed},
-      {"device_pixel_ratio", widget.devicePixelRatioF()},
-      {"screenshot_note",
-       "01-12 are actual OCCT viewport framebuffer dumps; 13 is optional OS screen capture."}};
+  QJsonObject root{{"platform", QSysInfo::prettyProductName()},
+                   {"architecture", QSysInfo::currentCpuArchitecture()},
+                   {"qt", qVersion()},
+                   {"occt", OCC_VERSION_COMPLETE},
+                   {"tests", results},
+                   {"total", results.size()},
+                   {"failed", failed},
+                   {"device_pixel_ratio", widget.devicePixelRatioF()},
+                   {"screenshot_note", "01-12 and 14 are actual OCCT viewport framebuffer dumps; "
+                                       "13 is optional OS screen capture."}};
   QFile file(QDir(output).filePath("gui-results.json"));
   file.open(QIODevice::WriteOnly);
   file.write(QJsonDocument(root).toJson());

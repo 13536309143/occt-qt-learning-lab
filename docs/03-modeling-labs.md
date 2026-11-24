@@ -164,7 +164,9 @@ BRepBuilderAPI_Transform op(shape,t,true);
 
 默认体积 `π×(50²−15²−4×4²)×12 ≈ 83352.736282 mm³`。六孔时换成 `6×4²`。
 
-![法兰](screenshots/11-flange.png)
+![默认四孔法兰](screenshots/11-flange.png)
+
+![通过参数对话框重建的六孔法兰](screenshots/14-six-hole-parameters.png)
 
 需要拒绝：非正尺寸、中心孔越界、孔数为零、螺栓孔越过内外边界、相邻孔相交。本工程要求孔之间保留正间隙；参数验证在建模前执行。
 

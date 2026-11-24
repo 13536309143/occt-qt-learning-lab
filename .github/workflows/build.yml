@@ -1,7 +1,17 @@
 name: Build and modeling tests
 on:
   push:
+    paths-ignore:
+      - 'docs/**'
+      - 'reports/**'
+      - 'samples/**'
+      - 'README.md'
   pull_request:
+    paths-ignore:
+      - 'docs/**'
+      - 'reports/**'
+      - 'samples/**'
+      - 'README.md'
   workflow_dispatch:
 permissions:
   contents: read
@@ -10,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-14, windows-2022]
+        os: [macos-15, windows-2022]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4

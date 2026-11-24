@@ -1,9 +1,9 @@
 Test project /Volumes/OUT/OCCT/build-mac
     Start 1: modeling
-1/2 Test #1: modeling .........................   Passed    0.49 sec
+1/2 Test #1: modeling .........................   Passed    0.15 sec
     Start 2: gui_experiments
-2/2 Test #2: gui_experiments ..................   Passed    5.26 sec
+2/2 Test #2: gui_experiments ..................   Passed    5.84 sec
 
 100% tests passed out of 2
 
-Total Test time (real) =   5.76 sec
+Total Test time (real) =   5.99 sec

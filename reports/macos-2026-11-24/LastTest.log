@@ -1,10 +1,10 @@
-Start testing: Nov 24 14:00 CST
+Start testing: Nov 24 14:03 CST
 ----------------------------------------------------------
 1/2 Testing: modeling
 1/2 Test: modeling
 Command: "/Volumes/OUT/OCCT/build-mac/model_tests" "/Volumes/OUT/OCCT/build-mac/test-artifacts"
 Directory: /Volumes/OUT/OCCT/build-mac
-"modeling" start time: Nov 24 14:00 CST
+"modeling" start time: Nov 24 14:03 CST
 Output:
 ----------------------------------------------------------
 PASS box_topology 
@@ -73,10 +73,10 @@ PASS reject_unwritable_step
 PASS reject_missing_brep 
 36/36 passed
 <end of output>
-Test time =   0.49 sec
+Test time =   0.15 sec
 ----------------------------------------------------------
 Test Passed.
-"modeling" end time: Nov 24 14:00 CST
+"modeling" end time: Nov 24 14:03 CST
 "modeling" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -84,7 +84,7 @@ Test Passed.
 2/2 Test: gui_experiments
 Command: "/Volumes/OUT/OCCT/build-mac/OcctQtStarter.app/Contents/MacOS/OcctQtStarter" "--self-test" "--output" "/Volumes/OUT/OCCT/build-mac/gui-artifacts"
 Directory: /Volumes/OUT/OCCT/build-mac
-"gui_experiments" start time: Nov 24 14:00 CST
+"gui_experiments" start time: Nov 24 14:03 CST
 Output:
 ----------------------------------------------------------
 PASS native_window_opengl_initialization 
@@ -113,13 +113,15 @@ PASS flange_render
 PASS gui_step_roundtrip 
 PASS invalid_model_preserves_previous 
 PASS selection_after_resize 
-17/17 GUI experiments passed
+2026-11-24 14:03:13.601 OcctQtStarter[63399:8810843] error messaging the mach port for IMKCFRunLoopWakeUpReliable
+PASS parameter_dialog_six_holes 
+18/18 GUI experiments passed
 <end of output>
-Test time =   5.26 sec
+Test time =   5.84 sec
 ----------------------------------------------------------
 Test Passed.
-"gui_experiments" end time: Nov 24 14:01 CST
+"gui_experiments" end time: Nov 24 14:03 CST
 "gui_experiments" time elapsed: 00:00:05
 ----------------------------------------------------------
 
-End testing: Nov 24 14:01 CST
+End testing: Nov 24 14:03 CST

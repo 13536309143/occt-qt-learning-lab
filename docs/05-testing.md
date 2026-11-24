@@ -8,11 +8,11 @@
 |---|---|---|
 | CMake 配置与编译 | 通过 | reports/configure-mac.log、build-mac.log |
 | 独立模型检查 | 36/36 | macos-2026-11-24/model-results.json |
-| 原生窗口检查 | 17/17 | macos-2026-11-24/gui-results.json |
-| 强制 QT_SCALE_FACTOR=2 的窗口检查 | 17/17 | macos-2026-11-24/scaled-gui/gui-results.json |
-| 截图 | 基准 13 张 + 缩放实验 13 张 | docs/screenshots、reports/.../scaled-gui |
+| 原生窗口检查 | 18/18 | macos-2026-11-24/gui-results.json |
+| 强制 QT_SCALE_FACTOR=2 的窗口检查 | 18/18 | macos-2026-11-24/scaled-gui/gui-results.json |
+| 截图 | 基准 14 张 + 缩放实验 14 张 | docs/screenshots、reports/.../scaled-gui |
 
-CTest 把两个可执行测试套件分别计为 modeling 和 gui_experiments，因此会显示 2/2 通过；套件内部细分为 36+17 项。额外 scale2 是独立执行的同一 GUI 套件，共执行 70 项检查，不应说成 70 种不同测试。
+CTest 把两个可执行测试套件分别计为 modeling 和 gui_experiments，因此会显示 2/2 通过；套件内部细分为 36+18 项。额外 scale2 是独立执行的同一 GUI 套件，共执行 72 项检查，不应说成 70 种不同测试。
 
 强制缩放说明坐标路径在该配置下工作，不等同于验证所有真实 Retina/Windows 高 DPI、多屏切换和显卡组合。
 

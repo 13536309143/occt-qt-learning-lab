@@ -52,9 +52,9 @@ powershell -ExecutionPolicy Bypass -File .\scripts\run-windows.ps1
 
 - Mac arm64、OCCT 7.9.3、Qt 6.8.4：已实际编译并运行。
 - 36 项建模、数学属性、非法输入和文件交换检查：全部通过。
-- 17 项原生窗口、鼠标事件、拾取、渲染和文件交互检查：全部通过。
+- 18 项原生窗口、鼠标事件、拾取、渲染和文件交互检查：全部通过。
 - [原始建模结果](reports/macos-2026-11-24/model-results.json)、[原始 GUI 结果](reports/macos-2026-11-24/gui-results.json)、[CTest 记录](reports/macos-2026-11-24/LastTest.log)。
-- 另执行 QT_SCALE_FACTOR=2 的同一组窗口实验，17/17 通过；[原始记录](reports/macos-2026-11-24/scaled-gui/gui-results.json)。
+- 另执行 QT_SCALE_FACTOR=2 的同一组窗口实验，18/18 通过；[原始记录](reports/macos-2026-11-24/scaled-gui/gui-results.json)。
 - Windows 结果以 [Actions](https://github.com/13536309143/occt-qt-learning-lab/actions) 的实际运行和你本机测试为准。没有执行的物理高分屏、显卡和文件对话框检查不会记作通过。
 
 ## 界面操作
@@ -81,7 +81,7 @@ cad_view.h               视图生命周期、显示与鼠标事件
 native_window.cpp        WNT_Window / Cocoa_Window 平台适配
 modeling.h / .cpp        无 Qt 依赖的建模与文件交换
 tests/model_tests.cpp    36 项可独立运行的模型检查
-gui_experiments.cpp      17 项真实窗口实验与截图输出
+gui_experiments.cpp      18 项真实窗口实验与截图输出
 scripts/                 Mac / Windows 安装、构建和运行
 docs/                    中文课程与截图
 samples/                 实际实验导出的 STEP、BREP、STL

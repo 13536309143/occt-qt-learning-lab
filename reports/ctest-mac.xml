@@ -6,9 +6,9 @@
 	skipped="0"
 	hostname="GeorgedeMini"
 	time="5"
-	timestamp="2026-11-24T14:00:54"
+	timestamp="2026-11-24T14:03:08"
 	>
-	<testcase name="modeling" classname="modeling" time="0.494452" status="run">
+	<testcase name="modeling" classname="modeling" time="0.151246" status="run">
 		<properties/>
 		<system-out>PASS box_topology 
 PASS box_volume 
@@ -47,7 +47,7 @@ PASS reject_invalid_translation
 [This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
 </system-out>
 	</testcase>
-	<testcase name="gui_experiments" classname="gui_experiments" time="5.26173" status="run">
+	<testcase name="gui_experiments" classname="gui_experiments" time="5.83734" status="run">
 		<properties/>
 		<system-out>PASS native_window_opengl_initialization 
 PASS toolbar_box_click 
@@ -75,7 +75,8 @@ PASS flange_render
 PASS gui_step_roundtrip 
 PASS invalid_model_preserves_previous 
 PASS selection_after_resize 
-17/17 GUI experiments passed
+2026-11-24 14:03:13.601 OcctQtS...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
 </system-out>
 	</testcase>
 </testsuite>

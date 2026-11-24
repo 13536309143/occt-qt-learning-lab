@@ -24,4 +24,7 @@ PASS flange_render
 PASS gui_step_roundtrip 
 PASS invalid_model_preserves_previous 
 PASS selection_after_resize 
-17/17 GUI experiments passed
+qt.qpa.window: Window position QRect(1180,504 200x60) outside any known screen, using primary screen
+2026-11-24 14:03:19.625 OcctQtStarter[63304:8811144] error messaging the mach port for IMKCFRunLoopWakeUpReliable
+PASS parameter_dialog_six_holes 
+18/18 GUI experiments passed

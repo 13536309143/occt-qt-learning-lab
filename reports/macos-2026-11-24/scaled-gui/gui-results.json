@@ -5,7 +5,7 @@
     "occt": "7.9.3",
     "platform": "macOS 27.2",
     "qt": "6.8.4",
-    "screenshot_note": "01-12 are actual OCCT viewport framebuffer dumps; 13 is optional OS screen capture.",
+    "screenshot_note": "01-12 and 14 are actual OCCT viewport framebuffer dumps; 13 is optional OS screen capture.",
     "tests": [
         {
             "error": "",
@@ -91,7 +91,12 @@
             "error": "",
             "name": "selection_after_resize",
             "passed": true
+        },
+        {
+            "error": "",
+            "name": "parameter_dialog_six_holes",
+            "passed": true
         }
     ],
-    "total": 17
+    "total": 18
 }
