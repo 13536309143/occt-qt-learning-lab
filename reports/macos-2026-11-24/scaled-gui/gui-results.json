@@ -1,0 +1,97 @@
+{
+    "architecture": "arm64",
+    "device_pixel_ratio": 2,
+    "failed": 0,
+    "occt": "7.9.3",
+    "platform": "macOS 27.2",
+    "qt": "6.8.4",
+    "screenshot_note": "01-12 are actual OCCT viewport framebuffer dumps; 13 is optional OS screen capture.",
+    "tests": [
+        {
+            "error": "",
+            "name": "native_window_opengl_initialization",
+            "passed": true
+        },
+        {
+            "error": "",
+            "name": "toolbar_box_click",
+            "passed": true
+        },
+        {
+            "error": "",
+            "name": "face_selection_mouse_click",
+            "passed": true
+        },
+        {
+            "error": "",
+            "name": "edge_selection_mouse_click",
+            "passed": true
+        },
+        {
+            "error": "",
+            "name": "wheel_changes_camera_scale",
+            "passed": true
+        },
+        {
+            "error": "",
+            "name": "right_drag_rotates_camera",
+            "passed": true
+        },
+        {
+            "error": "",
+            "name": "middle_drag_pans_camera",
+            "passed": true
+        },
+        {
+            "error": "",
+            "name": "resize_and_fit",
+            "passed": true
+        },
+        {
+            "error": "",
+            "name": "plate_render",
+            "passed": true
+        },
+        {
+            "error": "",
+            "name": "extrusion_render",
+            "passed": true
+        },
+        {
+            "error": "",
+            "name": "revolution_render",
+            "passed": true
+        },
+        {
+            "error": "",
+            "name": "loft_render",
+            "passed": true
+        },
+        {
+            "error": "",
+            "name": "fillet_render",
+            "passed": true
+        },
+        {
+            "error": "",
+            "name": "flange_render",
+            "passed": true
+        },
+        {
+            "error": "",
+            "name": "gui_step_roundtrip",
+            "passed": true
+        },
+        {
+            "error": "",
+            "name": "invalid_model_preserves_previous",
+            "passed": true
+        },
+        {
+            "error": "",
+            "name": "selection_after_resize",
+            "passed": true
+        }
+    ],
+    "total": 17
+}

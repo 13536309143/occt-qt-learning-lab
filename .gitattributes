@@ -1,0 +1,9 @@
+* text=auto
+*.sh text eol=lf
+*.ps1 text eol=crlf
+*.png binary
+*.stl binary
+# Preserve generated CAD files and raw test logs exactly as produced.
+*.step -whitespace
+*.brep -whitespace
+reports/** -whitespace

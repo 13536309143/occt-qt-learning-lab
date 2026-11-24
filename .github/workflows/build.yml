@@ -1,0 +1,48 @@
+name: Build and modeling tests
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-14, windows-2022]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: occt-tutorial
+          create-args: >-
+            occt=7.9.3
+            qt6-main=6.8.4
+            cmake>=3.21
+            ninja
+          cache-environment: true
+      - uses: ilammy/msvc-dev-cmd@v1
+        if: runner.os == 'Windows'
+        with:
+          arch: x64
+      - name: Configure
+        shell: micromamba-shell {0}
+        run: cmake -S . -B build-ci -G Ninja -DCMAKE_BUILD_TYPE=Release -DOCCT_ENABLE_GUI_TESTS=OFF
+      - name: Build
+        shell: micromamba-shell {0}
+        run: cmake --build build-ci --parallel 3
+      - name: Modeling and exchange tests
+        shell: micromamba-shell {0}
+        run: ctest --test-dir build-ci --output-on-failure --output-junit test-results.xml
+      - name: Upload test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-evidence-${{ matrix.os }}
+          path: |
+            build-ci/test-results.xml
+            build-ci/test-artifacts/
+            build-ci/Testing/Temporary/LastTest.log
+      # Native GUI rendering is tested locally on a real desktop, not claimed by CI.

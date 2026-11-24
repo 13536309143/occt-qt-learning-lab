@@ -1,0 +1,14 @@
+.local/
+build*/
+out/
+.DS_Store
+.vscode/
+.idea/
+*.user
+reports/dependency-install.log
+reports/formatter-install.log
+reports/publish*.json
+reports/windows-local/
+gui-artifacts/
+test-artifacts/
+dist/

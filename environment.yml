@@ -1,0 +1,8 @@
+name: occt-qt-tutorial
+channels:
+  - conda-forge
+dependencies:
+  - occt=7.9.3
+  - qt6-main=6.8.4
+  - cmake>=3.21
+  - ninja
