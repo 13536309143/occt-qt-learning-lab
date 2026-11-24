@@ -90,6 +90,7 @@ Mac 已有 Homebrew 时也可使用 `brew install cmake ninja qt opencascade`，
 | 找不到 OpenCASCADEConfig | 不要填 OCCT 源码根目录 |
 | TKDESTEP 不存在 | OCCT 版本/分库方式/数据交换模块 |
 | LNK2019 | 库是否链接，编译器与 x64 是否一致 |
+| 辅助函数处出现不合理语法错误 | 检查 Windows 头文件宏；例如旧宏 near 会与同名函数冲突，本工程使用 expectNear |
 | DLL 不存在 | 运行脚本设置的 PATH 是否生效 |
 | wrong architecture | Mac arm64/x86_64 混用，清理相应 build 目录重建 |
 | Qt platform plugin 错误 | 检查是否混用了全局 QT_PLUGIN_PATH 或另一份 Qt |

@@ -1,2 +1,2 @@
-[1/2] Building CXX object CMakeFiles/OcctQtStarter.dir/gui_experiments.cpp.o
-[2/2] Linking CXX executable OcctQtStarter.app/Contents/MacOS/OcctQtStarter
+[1/2] Building CXX object CMakeFiles/model_tests.dir/tests/model_tests.cpp.o
+[2/2] Linking CXX executable model_tests

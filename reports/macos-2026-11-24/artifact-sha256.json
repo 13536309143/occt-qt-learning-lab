@@ -1,0 +1,19 @@
+{
+  "docs/screenshots/01-box.png": "967d2f164b992d93dee8fd1deab22288e9cade5526dfd60fa0884395935db3ef",
+  "docs/screenshots/02-face-selection.png": "fc8ea840e8285af2aa4453d3744ef40223a9353cbf89ae7df16cde64e8895de6",
+  "docs/screenshots/03-edge-selection.png": "0fb09eeef3cdea3394bf18cb48ebb527f4778848faa695f27dad7125357b924e",
+  "docs/screenshots/04-rotated.png": "e2830c23e938261d13480e436c8ebd726e1ff107617e52b3aa6e3e76d3881316",
+  "docs/screenshots/05-resized.png": "0f5805cc9976405b546f6aa4d560db88c9644a7c0b8f7926762b1422f6e2b4d8",
+  "docs/screenshots/06-plate.png": "dacad35c395477f476e9a1a6832c3bb3f5b57f62cec87d6afa03125062b6e2de",
+  "docs/screenshots/07-extrusion.png": "20a2df6bb75049fe25a2e53259bd4ec7533a5ceffbcb03293f0c84177447a37c",
+  "docs/screenshots/08-revolution.png": "5a000585937f62856e7b9d675b11b171085b610316a6e3b82f916019430f68bc",
+  "docs/screenshots/09-loft.png": "b76ef963803afc4a7228c16db0daa041ab867ba846623a29907943b624f71f34",
+  "docs/screenshots/10-fillet.png": "50c39412c13d28048a85d843916891ae36d1032b52fdbabc4439f25b1fce2296",
+  "docs/screenshots/11-flange.png": "c188bea50c5755f433c2c4edfa51a04d374033dabf5b75c566d474af8d81aa65",
+  "docs/screenshots/12-step-import.png": "c188bea50c5755f433c2c4edfa51a04d374033dabf5b75c566d474af8d81aa65",
+  "docs/screenshots/13-application-screen.png": "6af518f5a91c5b8e8a349a2a1653b3e8a00ef11c61d37e0a8115e6ca59512d80",
+  "docs/screenshots/14-six-hole-parameters.png": "cb8b8e73be8c5acb346935f27a4293ec48391899ea186197b90114dba2c31a97",
+  "samples/flange.brep": "93b1c4e0555d81a692ebb450982da1e7193d8462f76c8300586d45c39386c0c5",
+  "samples/flange.stl": "2e694eb788e8de761a8291898859ba7a55fc31cbcc2cbb41a915f94b84ba2e50",
+  "samples/plate.step": "4b8dbb12de4d993e8cf51d873eeac2419ca870f107e173982501abcb9cc5b648"
+}

@@ -21,7 +21,7 @@ void check(bool ok, const char *message) {
   if (!ok)
     throw std::runtime_error(message);
 }
-void near(double a, double b, double tolerance = 1e-5) {
+void expectNear(double a, double b, double tolerance = 1e-5) {
   if (std::abs(a - b) > tolerance)
     throw std::runtime_error("Unexpected numerical value: " + std::to_string(a) + " expected " +
                              std::to_string(b));
@@ -79,47 +79,49 @@ int main(int argc, char **argv) {
     auto s = cad::stats(cad::box());
     check(s.faces == 6 && s.edges == 12 && s.vertices == 8 && s.solids == 1, "Box topology");
   });
-  test("box_volume", [] { near(cad::stats(cad::box()).volume, 240000); });
+  test("box_volume", [] { expectNear(cad::stats(cad::box()).volume, 240000); });
   test("box_center", [] {
     GProp_GProps p;
     BRepGProp::VolumeProperties(cad::box(), p);
-    near(p.CentreOfMass().X(), 50);
-    near(p.CentreOfMass().Y(), 40);
-    near(p.CentreOfMass().Z(), 15);
+    expectNear(p.CentreOfMass().X(), 50);
+    expectNear(p.CentreOfMass().Y(), 40);
+    expectNear(p.CentreOfMass().Z(), 15);
   });
-  test("box_custom_dimensions", [] { near(cad::stats(cad::box(2, 3, 4)).volume, 24); });
-  test("plate_volume", [&] { near(cad::stats(cad::plate()).volume, 240000 - pi * 144 * 30); });
+  test("box_custom_dimensions", [] { expectNear(cad::stats(cad::box(2, 3, 4)).volume, 24); });
+  test("plate_volume",
+       [&] { expectNear(cad::stats(cad::plate()).volume, 240000 - pi * 144 * 30); });
   test("plate_single_solid", [] {
     auto s = cad::stats(cad::plate());
     check(s.solids == 1 && s.faces == 7, "Plate topology");
   });
-  test("extrusion_volume", [] { near(cad::stats(cad::extrusion()).volume, 64000); });
+  test("extrusion_volume", [] { expectNear(cad::stats(cad::extrusion()).volume, 64000); });
   test("revolution_volume",
-       [&] { near(cad::stats(cad::revolved()).volume, pi * (400 - 100) * 30); });
-  test("loft_volume", [] { near(cad::stats(cad::loft()).volume, 168000, 1e-3); });
+       [&] { expectNear(cad::stats(cad::revolved()).volume, pi * (400 - 100) * 30); });
+  test("loft_volume", [] { expectNear(cad::stats(cad::loft()).volume, 168000, 1e-3); });
   test("fillet_valid_and_removes_material", [] {
     auto s = cad::stats(cad::filleted());
     check(s.solids == 1 && s.volume > 200000 && s.volume < 240000, "Fillet volume");
   });
   test("translation_volume",
-       [] { near(cad::stats(cad::translated(cad::box(), 120, -30, 40)).volume, 240000); });
+       [] { expectNear(cad::stats(cad::translated(cad::box(), 120, -30, 40)).volume, 240000); });
   test("translation_center", [] {
     GProp_GProps p;
     BRepGProp::VolumeProperties(cad::translated(cad::box(), 120, -30, 40), p);
-    near(p.CentreOfMass().X(), 170);
-    near(p.CentreOfMass().Y(), 10);
-    near(p.CentreOfMass().Z(), 55);
+    expectNear(p.CentreOfMass().X(), 170);
+    expectNear(p.CentreOfMass().Y(), 10);
+    expectNear(p.CentreOfMass().Z(), 55);
   });
-  test("flange_volume",
-       [&] { near(cad::stats(cad::flange()).volume, pi * (2500 - 225 - 4 * 16) * 12, 1e-3); });
+  test("flange_volume", [&] {
+    expectNear(cad::stats(cad::flange()).volume, pi * (2500 - 225 - 4 * 16) * 12, 1e-3);
+  });
   test("flange_six_holes", [&] {
-    near(cad::stats(cad::flange(100, 12, 30, 6, 8, 70)).volume, pi * (2500 - 225 - 6 * 16) * 12,
-         1e-3);
+    expectNear(cad::stats(cad::flange(100, 12, 30, 6, 8, 70)).volume,
+               pi * (2500 - 225 - 6 * 16) * 12, 1e-3);
   });
   test("sphere_volume", [&] {
     BRepPrimAPI_MakeSphere m(10);
     m.Build();
-    near(cad::stats(m.Shape()).volume, 4 * pi * 1000 / 3);
+    expectNear(cad::stats(m.Shape()).volume, 4 * pi * 1000 / 3);
   });
   test("boolean_union_volume", [] {
     auto a = cad::box(10, 10, 10);
@@ -127,7 +129,7 @@ int main(int argc, char **argv) {
     BRepAlgoAPI_Fuse op(a, b);
     op.Build();
     check(op.IsDone(), "Fuse failed");
-    near(cad::stats(op.Shape()).volume, 1500);
+    expectNear(cad::stats(op.Shape()).volume, 1500);
   });
   test("boolean_intersection_volume", [] {
     auto a = cad::box(10, 10, 10);
@@ -135,7 +137,7 @@ int main(int argc, char **argv) {
     BRepAlgoAPI_Common op(a, b);
     op.Build();
     check(op.IsDone(), "Common failed");
-    near(cad::stats(op.Shape()).volume, 500);
+    expectNear(cad::stats(op.Shape()).volume, 500);
   });
   test("reject_zero_dimension", [] { rejects([] { cad::box(0, 1, 1); }); });
   test("reject_negative_dimension", [] { rejects([] { cad::box(1, -1, 1); }); });
@@ -156,18 +158,18 @@ int main(int argc, char **argv) {
     auto p = (out / "plate.step").u8string();
     cad::writeStep(cad::plate(), p);
     auto s = cad::stats(cad::readStep(p));
-    near(s.volume, 240000 - pi * 144 * 30, 1e-3);
+    expectNear(s.volume, 240000 - pi * 144 * 30, 1e-3);
     check(s.solids == 1, "STEP solids");
   });
   test("step_unicode_filename", [&] {
     auto p = (out / fs::u8path(u8"法兰盘.step")).u8string();
     cad::writeStep(cad::flange(), p);
-    near(cad::stats(cad::readStep(p)).volume, cad::stats(cad::flange()).volume, 1e-3);
+    expectNear(cad::stats(cad::readStep(p)).volume, cad::stats(cad::flange()).volume, 1e-3);
   });
   test("brep_roundtrip", [&] {
     auto p = (out / "flange.brep").u8string();
     cad::writeBrep(cad::flange(), p);
-    near(cad::stats(cad::readBrep(p)).volume, cad::stats(cad::flange()).volume);
+    expectNear(cad::stats(cad::readBrep(p)).volume, cad::stats(cad::flange()).volume);
   });
   test("binary_stl_triangle_count", [&] {
     auto p = out / "flange.stl";

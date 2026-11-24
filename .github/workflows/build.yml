@@ -46,6 +46,14 @@ jobs:
       - name: Modeling and exchange tests
         shell: bash -el {0}
         run: ctest --test-dir build-ci --output-on-failure --output-junit test-results.xml
+      - name: Verify Windows user build script
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $prefix = Join-Path $env:MAMBA_ROOT_PREFIX 'envs\occt-tutorial'
+          New-Item -ItemType Directory -Force .local | Out-Null
+          New-Item -ItemType Junction -Path .local\env -Target $prefix | Out-Null
+          & .\scripts\build-windows.ps1 -SkipGui
       - name: Upload test evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -55,4 +63,6 @@ jobs:
             build-ci/test-results.xml
             build-ci/test-artifacts/
             build-ci/Testing/Temporary/LastTest.log
+            reports/windows-local/
+            build-win/test-artifacts/model-results.json
       # Native GUI rendering is tested locally on a real desktop, not claimed by CI.
